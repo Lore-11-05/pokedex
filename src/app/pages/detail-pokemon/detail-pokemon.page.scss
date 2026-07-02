@@ -1,0 +1,56 @@
+.pokemon-header {
+  text-align: center;
+  padding: 20px;
+
+  img {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+  }
+
+  h1 {
+    font-size: 2rem;
+    margin: 10px 0 5px;
+    text-transform: capitalize;
+  }
+
+  p {
+    color: var(--ion-color-medium);
+    margin: 0;
+    font-size: 1.2rem;
+  }
+}
+
+.stat-item {
+  margin-bottom: 15px;
+
+  ion-label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+  }
+
+  ion-progress-bar {
+    height: 20px;
+    border-radius: 10px;
+  }
+}
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  gap: 20px;
+
+  ion-spinner {
+    width: 50px;
+    height: 50px;
+  }
+
+  p {
+    font-size: 1.2rem;
+    color: var(--ion-color-medium);
+  }
+}

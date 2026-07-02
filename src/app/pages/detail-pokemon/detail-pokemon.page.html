@@ -1,0 +1,98 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/list-pokemons"></ion-back-button>
+    </ion-buttons>
+    <ion-title *ngIf="pokemon">{{ pokemon.name | titlecase }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" *ngIf="pokemon; else loading">
+  <div class="pokemon-header">
+    <img [src]="pokemon.image" [alt]="pokemon.name">
+    <h1>{{ pokemon.name | titlecase }}</h1>
+    <p>#{{ pokemon.id | number: '3.0' }}</p>
+  </div>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Información Básica</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="6">
+            <ion-label>
+              <strong>Tipo 1:</strong> {{ pokemon.type1 | titlecase }}
+            </ion-label>
+          </ion-col>
+          <ion-col size="6" *ngIf="pokemon.type2">
+            <ion-label>
+              <strong>Tipo 2:</strong> {{ pokemon.type2 | titlecase }}
+            </ion-label>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="6">
+            <ion-label>
+              <strong>Altura:</strong> {{ pokemon.height }}m
+            </ion-label>
+          </ion-col>
+          <ion-col size="6">
+            <ion-label>
+              <strong>Peso:</strong> {{ pokemon.weight }}kg
+            </ion-label>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="pokemon.hiddenAbility">
+          <ion-col size="12">
+            <ion-label>
+              <strong>Habilidad Oculta:</strong> {{ pokemon.hiddenAbility | titlecase }}
+            </ion-label>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="pokemon.stats">
+    <ion-card-header>
+      <ion-card-title>Estadísticas</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div class="stat-item">
+        <ion-label>HP: {{ pokemon.stats.hp }}</ion-label>
+        <ion-progress-bar [value]="getStatPercentage(pokemon.stats.hp)"></ion-progress-bar>
+      </div>
+      <div class="stat-item">
+        <ion-label>Ataque: {{ pokemon.stats.attack }}</ion-label>
+        <ion-progress-bar [value]="getStatPercentage(pokemon.stats.attack)"></ion-progress-bar>
+      </div>
+      <div class="stat-item">
+        <ion-label>Defensa: {{ pokemon.stats.defense }}</ion-label>
+        <ion-progress-bar [value]="getStatPercentage(pokemon.stats.defense)"></ion-progress-bar>
+      </div>
+      <div class="stat-item">
+        <ion-label>Ataque Especial: {{ pokemon.stats.specialAttack }}</ion-label>
+        <ion-progress-bar [value]="getStatPercentage(pokemon.stats.specialAttack)"></ion-progress-bar>
+      </div>
+      <div class="stat-item">
+        <ion-label>Defensa Especial: {{ pokemon.stats.specialDefense }}</ion-label>
+        <ion-progress-bar [value]="getStatPercentage(pokemon.stats.specialDefense)"></ion-progress-bar>
+      </div>
+      <div class="stat-item">
+        <ion-label>Velocidad: {{ pokemon.stats.speed }}</ion-label>
+        <ion-progress-bar [value]="getStatPercentage(pokemon.stats.speed)"></ion-progress-bar>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+
+<ng-template #loading>
+  <ion-content [fullscreen]="true">
+    <div class="loading-container">
+      <ion-spinner name="crescent"></ion-spinner>
+      <p>Cargando Pokémon...</p>
+    </div>
+  </ion-content>
+</ng-template>

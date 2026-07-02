@@ -1,0 +1,27 @@
+.pokemon-types {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 10px;
+
+  ion-badge {
+    text-transform: capitalize;
+  }
+}
+
+ion-card {
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.3s;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  img {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    margin: 0 auto;
+  }
+}
